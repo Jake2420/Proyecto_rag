@@ -21,7 +21,7 @@ if "messages" not in st.session_state:
      st.session_state.messages = [{"role": "assistant", "content": "Hola!, en que puedo ayudarte?"}]
 
 #Definimos modelo
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 #Elegimos una coleccion
 colecciones = obtener_colecciones()
