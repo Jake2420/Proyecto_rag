@@ -18,7 +18,7 @@ with col2:
 st.sidebar.title("Menú de Funciones")
 generarPages()
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 archivo = st.file_uploader("📂 Sube tus documentos PDF para chatear con ellos", type=["pdf", "txt"], accept_multiple_files=True)
 
