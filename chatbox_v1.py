@@ -1,4 +1,5 @@
 import  streamlit as st 
+import time
 from Rag_milvus import query_qdrant, obtener_colecciones, query_qdrant_sinumbral
 from Llm_local import generarPages, get_response_from_distilgpt2
 from sentence_transformers import SentenceTransformer
