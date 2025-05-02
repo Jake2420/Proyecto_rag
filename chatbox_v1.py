@@ -1,6 +1,6 @@
 import  streamlit as st 
 from Rag_milvus import query_qdrant, obtener_colecciones, query_qdrant_sinumbral
-from Llm_local import get_response_from_mistral, generarPages
+from Llm_local import generarPages, get_response_from_distilgpt2
 from sentence_transformers import SentenceTransformer
 
 col1, col2 = st.columns([1, 4])
@@ -54,7 +54,7 @@ if prompt := st.chat_input("Escribe tus dudas"):
         if not results:
             response = "Disculpa, no tengo información para responder esa pregunta."
         else:
-            response = st.write_stream(get_response_from_mistral(prompt, results))
+            response = st.write_stream(get_response_from_distilgpt2(prompt, results))
         
     st.session_state.messages.append({"role": "assistant", "content": response})
     st.write(results)
