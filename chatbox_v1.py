@@ -57,4 +57,4 @@ if prompt := st.chat_input("Escribe tus dudas"):
             response = st.write_stream(get_response_from_distilgpt2(prompt, results))
         
     st.session_state.messages.append({"role": "assistant", "content": response})
-    st.write(results)
+    #st.write(results)
