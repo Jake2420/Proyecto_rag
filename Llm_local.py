@@ -2,6 +2,7 @@ import ollama
 import time
 import  streamlit as st 
 import fitz  
+from transformers import pipeline
 from docx import Document
 from io import BytesIO
 from fpdf import FPDF
