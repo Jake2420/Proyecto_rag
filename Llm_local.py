@@ -7,6 +7,7 @@ from docx import Document
 from io import BytesIO
 from fpdf import FPDF
 
+generator = pipeline("text-generation", model="distilgpt2")
 def get_response_from_mistral(query, context):
     prompt_text = f"""
     "Tú eres un asistente para tareas de respuesta a preguntas. "
