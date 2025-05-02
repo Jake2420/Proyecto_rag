@@ -64,10 +64,11 @@ def get_response_from_distilgpt2(query, context):
     # Extraer la respuesta generada
     respuesta_texto = response[0]['generated_text']
 
-    # Dividir la respuesta en palabras y generar la salida de manera secuencial
-    for word in respuesta_texto.split():
-        yield word + " "
-        time.sleep(0.05) 
+    # Ahora, solo devolvemos la respuesta, sin el prompt
+    respuesta_texto = respuesta_texto.strip()  # Eliminar espacios al principio y final
+
+    return respuesta_texto
+        
 def generarPages():
     with st.sidebar:
         st.page_link("chatbox_v1.py", label="Inicio", icon="🏠")
