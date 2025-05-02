@@ -104,19 +104,16 @@ def informes_mistral(context):
         Utiliza un estilo claro y profesional en todo momento, y asegúrate de que cada sección esté claramente diferenciada. Tu informe debe ser extenso y abarcativo, no debe ser corto ni vago.
         recuerda siempre reponder en español
     """
-    respuesta = ollama.chat(
-        model="mistral",
-        messages=[
-            {"role": "system", "content": "Eres un asistente especializado en análisis detallado de documentos."},
-            {"role": "user", "content": prompt_text}
-        ]
-    )
+    # Generar la respuesta usando DistilGPT-2
+    response = generator(prompt_text, max_new_tokens=100, num_return_sequences=1)
 
-    respuesta_texto = respuesta["message"]["content"] 
-    
-    for word in respuesta_texto.split():  
-        yield word + " "
-        time.sleep(0.05)
+    # Extraer la respuesta generada
+    respuesta_texto = response[0]['generated_text']
+
+    # Ahora, solo devolvemos la respuesta, sin el prompt
+    respuesta_texto = respuesta_texto.strip()  # Eliminar espacios al principio y final
+
+    return respuesta_texto
 
 def extraer_texto(archivo):
     if archivo.name.endswith(".pdf"):
