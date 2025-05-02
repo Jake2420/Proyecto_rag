@@ -59,7 +59,7 @@ def get_response_from_distilgpt2(query, context):
     """
 
     # Generar la respuesta usando DistilGPT-2
-    response = generator(prompt_text, max_length=200, num_return_sequences=1)
+    response = generator(prompt_text, max_new_tokens=100, num_return_sequences=1)
 
     # Extraer la respuesta generada
     respuesta_texto = response[0]['generated_text']
