@@ -75,7 +75,7 @@ def generarPages():
         st.page_link("pages/resumen_word.py", label="Informe de PDF y Word", icon="📄")
         st.page_link("pages/insertardocumentos.py", label="Documentos a vector", icon="🛢️")
 
-def informes_mistral(context):
+def informes_distilgpt2(context):
     prompt_text = f"""
         **Atención**: No generes una historia o narrativa, tu tarea es realizar un análisis detallado y preciso del documento legal. No se requiere creatividad, solo precisión.
         Eres un asistente experto en procesamiento y análisis de documentos. Tu tarea es leer y comprender el contenido proporcionado y generar un informe extenso, detallado y bien estructurado. 
@@ -102,18 +102,16 @@ def informes_mistral(context):
         {context}
 
         Utiliza un estilo claro y profesional en todo momento, y asegúrate de que cada sección esté claramente diferenciada. Tu informe debe ser extenso y abarcativo, no debe ser corto ni vago.
-        recuerda siempre reponder en español
+        recuerda siempre responder en español
     """
-    # Generar la respuesta usando DistilGPT-2
-    response = generator(prompt_text, max_new_tokens=100, num_return_sequences=1)
 
-    # Extraer la respuesta generada
+    response = generator(prompt_text, max_new_tokens=100, num_return_sequences=1)  # Usando DistilGPT-2
+    
     respuesta_texto = response[0]['generated_text']
 
-    # Ahora, solo devolvemos la respuesta, sin el prompt
-    respuesta_texto = respuesta_texto.strip()  # Eliminar espacios al principio y final
-
-    return respuesta_texto
+    for word in respuesta_texto.split():  
+        yield word + " "
+        time.sleep(0.05)
 
 def extraer_texto(archivo):
     if archivo.name.endswith(".pdf"):
