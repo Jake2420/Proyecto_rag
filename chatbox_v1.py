@@ -56,9 +56,9 @@ if prompt := st.chat_input("Escribe tus dudas"):
             response = "Disculpa, no tengo información para responder esa pregunta."
         else:
             response = get_response_from_distilgpt2(prompt, results)
-            for word in response.split():
-                st.write(word, end="")  
-                time.sleep(0.05)
+            for word in respuesta.split():
+                respuesta_concatenada += word + " "  # Concatenar las palabras
+                time.sleep(0.05) 
         
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append({"role": "assistant", "content": respuesta_concatenada})
     #st.write(results)
