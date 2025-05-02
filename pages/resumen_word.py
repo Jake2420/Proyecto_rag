@@ -1,6 +1,6 @@
 import streamlit as st
 from sentence_transformers import SentenceTransformer
-from Llm_local import generarPages, informes_mistral,extraer_texto, extraer_texto_word, generar_docx, generar_pdf
+from Llm_local import generarPages, informes_distilgpt2,extraer_texto, extraer_texto_word, generar_docx, generar_pdf
 
 col1, col2 = st.columns([1, 4])
 with col1:
