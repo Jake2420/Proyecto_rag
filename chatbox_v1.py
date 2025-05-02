@@ -57,7 +57,7 @@ if prompt := st.chat_input("Escribe tus dudas"):
         else:
             respuesta_concatenada = ""
             response = get_response_from_distilgpt2(prompt, results)
-            for word in respuesta.split():
+            for word in response.split():
                 respuesta_concatenada += word + " "  # Concatenar las palabras
                 time.sleep(0.05) 
         
