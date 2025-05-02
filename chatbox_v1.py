@@ -60,6 +60,6 @@ if prompt := st.chat_input("Escribe tus dudas"):
             for word in response.split():
                 respuesta_concatenada += word + " "  # Concatenar las palabras
                 time.sleep(0.05) 
-        
+            st.markdown(respuesta_concatenada)
     st.session_state.messages.append({"role": "assistant", "content": respuesta_concatenada})
     #st.write(results)
