@@ -19,7 +19,7 @@ generarPages()
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "Hola!, en qué puedo ayudarte?"}]
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 archivo = st.file_uploader("📂 Sube tus documentos PDF o WORD ¡Para hacer un informe!", type=["pdf", "txt"], accept_multiple_files=True)
 
