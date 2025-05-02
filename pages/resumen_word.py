@@ -39,18 +39,20 @@ if archivo:
 
     if texto_total.strip():
         resumen_completo = [""]  
-        #st.write(texto_total)
+
         def resumen_streaming():
-            for palabra in informes_mistral(texto_total):
+            for palabra in informes_distilgpt2(texto_total):
                 resumen_completo[0] += palabra  
                 yield palabra
 
         st.subheader("📄 Informe de todos los documentos:")
         st.write_stream(resumen_streaming())
 
+        # Descargar como PDF
         pdf_bytes = generar_pdf(resumen_completo[0])
         st.download_button("📄 Descargar Informe en PDF", data=pdf_bytes, file_name="resumen_global.pdf", mime="application/pdf")
 
+        # Descargar como Word
         docx_buffer = generar_docx(resumen_completo[0])
         st.download_button("📝 Descargar Informe en Word", data=docx_buffer, file_name="resumen_global.docx",
                         mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
