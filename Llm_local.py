@@ -37,7 +37,35 @@ def get_response_from_mistral(query, context):
     for word in respuesta_texto.split():  
         yield word + " "
         time.sleep(0.05)
+def get_response_from_distilgpt2(query, context):
+    prompt_text = f"""
+        Tú eres un asistente para tareas de respuesta a preguntas.
+        Usa los siguientes fragmentos de contexto recuperado para responder la pregunta.
+        Si el contexto está vacío o no contiene información relevante, responde: 'Disculpa, no tengo información para responder esa pregunta'.
+        Si el contexto es válido, responde la pregunta usando un mínimo de 2 oraciones y un máximo de 4, manteniendo la respuesta clara y concisa.
+        No inventes ni asumas nada que no esté explícitamente en el contexto.
+        
+        Usa solo este contexto:
+        {context}
+        
+        **IMPORTANTE**
+        Ojo siempre que tu contexto está vacío, tu respuesta debe ser: 'Disculpa, no tengo información para responder esa pregunta'
+        **
+    
+        Y responde esta pregunta:
+        {query}
+    """
 
+    # Generar la respuesta usando DistilGPT-2
+    response = generator(prompt_text, max_length=200, num_return_sequences=1)
+
+    # Extraer la respuesta generada
+    respuesta_texto = response[0]['generated_text']
+
+    # Dividir la respuesta en palabras y generar la salida de manera secuencial
+    for word in respuesta_texto.split():
+        yield word + " "
+        time.sleep(0.05) 
 def generarPages():
     with st.sidebar:
         st.page_link("chatbox_v1.py", label="Inicio", icon="🏠")
